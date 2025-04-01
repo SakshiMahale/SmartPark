@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top-Up Balance</title>
+    <link rel="stylesheet" href="../css/top_up.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <h1>Top-Up Balance</h1>
+        </div>
+    </header>
+
+    <!-- Updated Balance Card -->
+    <section class="balance-container">
+        <div class="balance-card">
+            <h2>Your Balance</h2>
+            <p>₹<span id="balance">500</span></p>
+        </div>
+    </section>
+
+    <section class="topup-container">
+        <h2>Add Funds to Your Account</h2>
+        <form class="topup-form" onsubmit="event.preventDefault(); updateBalance();">
+            <label for="amount">Enter Amount (₹):</label>
+            <input type="number" id="amount" placeholder="Enter amount" required>
+
+            <label for="payment-method">Select Payment Method:</label>
+            <select id="payment-method" required>
+                <option value="upi">UPI</option>
+                <option value="credit">Credit Card</option>
+                <option value="debit">Debit Card</option>
+                <option value="netbanking">Net Banking</option>
+            </select>
+
+            <button type="submit">Proceed to Payment</button>
+        </form>
+    </section>
+
+    <script>
+        let balance = 500; // Initial balance
+
+        function updateBalance() {
+            let amount = document.getElementById("amount").value;
+            if (amount > 0) {
+                balance += parseInt(amount);
+                document.getElementById("balance").textContent = balance;
+                alert("₹" + amount + " added successfully! Your new balance is ₹" + balance);
+            } else {
+                alert("Please enter a valid amount.");
+            }
+        }
+    </script>
+</body>
+</html>

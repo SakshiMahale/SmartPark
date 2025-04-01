@@ -1,0 +1,130 @@
+/* General Styles */
+body {
+    background-color: #f4f4f4;
+    margin: 0;
+    font-family: "Times New Roman", Times, serif;
+    font-size: large;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    padding: 10px;
+    width: 100%;
+    height: 70px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Balance Display - Stylish Card */
+.balance-container {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.balance-card {
+    background: linear-gradient(135deg, #7792c4, #2a5298);
+    color: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    max-width: 320px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.balance-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.balance-card h2 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.balance-card span {
+    font-size: 34px;
+    font-weight: bold;
+    color: #ffea00;
+}
+
+/* Top-Up Container */
+.topup-container {
+    padding: 30px;
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: left;
+}
+
+h2 {
+    font-size: 28px;
+    color: rgb(8, 8, 131);
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Top-Up Form */
+.topup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+}
+
+.topup-form label {
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+}
+
+.topup-form input, .topup-form select {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 100%;
+    transition: 0.3s;
+}
+
+.topup-form input:focus, .topup-form select:focus {
+    border-color: #0056b3;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 86, 179, 0.4);
+}
+
+.topup-form button {
+    padding: 14px;
+    background-color: darkblue;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.topup-form button:hover {
+    background-color: #0465cc;
+    transform: scale(1.05);
+}
+
+
