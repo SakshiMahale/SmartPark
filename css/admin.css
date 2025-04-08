@@ -1,0 +1,24 @@
+body {
+    background-color: #f4f7f6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  h2 {
+    color: #0a6bea;
+  }
+  
+  .card {
+    border-radius: 10px;
+  }
+  
+  .table th, .table td {
+    vertical-align: middle;
+    text-align: center;
+  }
+  
+  .btn {
+    padding: 5px 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  

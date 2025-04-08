@@ -1,0 +1,102 @@
+body {
+    background-color: #f4f7f6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header Navbar */
+header {
+    background-color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img{
+    height: 60px;
+}
+
+.nav-links {    
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: black;
+    text-decoration: none;
+}
+
+.nav-links a:hover {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Main contanier */
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+.payment-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.payment-card h3 {
+    color: #0a6bea;
+}
+
+.payment-card input.form-control:disabled {
+    background-color: #f1f1f1;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Buttons */
+
+.btn-primary {
+    background: linear-gradient(to right, #0a6bea, #66b2ff);
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    color: white;
+    transition: 0.3s;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background: #004aad;
+}
+
+.btn-outline-secondary {
+    border-radius: 25px;
+    font-weight: 600;
+    width: 100%;
+}
+
+@media (max-width: 480px) {
+    .logo img {
+        height: 45px;
+    }
+
+    .payment-card {
+        padding: 15px;
+    }
+
+    .btn-primary, .btn-outline-secondary {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
