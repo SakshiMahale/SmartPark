@@ -1,102 +1,206 @@
+/* General Styles */
 body {
     background-color: #f4f7f6;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
 }
 
-/* Header Navbar */
+/* Header Styles */
 header {
     background-color: white;
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.logo img{
+.logo img {
     height: 60px;
 }
 
-.nav-links {    
+.nav-links {
     list-style: none;
     padding: 0;
+    margin: 0;
+    display: flex;
 }
 
-nav ul li {
-    display: inline;
+.nav-links li {
     margin-left: 20px;
 }
 
-nav ul li a {
+.nav-links a {
     color: black;
     text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
 }
 
 .nav-links a:hover {
     font-weight: bold;
-    color: #333;
+    color: #0a6bea;
 }
 
-/* Main contanier */
-
+/* Main Container */
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    padding: 20px;
+    padding: 40px 20px;
 }
 
+/* Payment Card */
 .payment-card {
     background-color: #ffffff;
     border-radius: 10px;
     width: 100%;
     max-width: 450px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.payment-card h3 {
+.payment-card h2 {
     color: #0a6bea;
+    text-align: center;
+    margin-bottom: 25px;
 }
 
-.payment-card input.form-control:disabled {
-    background-color: #f1f1f1;
+/* Booking Summary */
+.booking-summary {
+    background-color: #f8fafc;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.booking-summary h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.booking-summary p {
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.booking-summary p strong {
+    color: #555;
+}
+
+/* Payment Details */
+.payment-details .form-group {
+    margin-bottom: 20px;
+}
+
+.payment-details label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
     font-weight: 500;
-    color: #333;
+}
+
+.total-amount {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2ecc71;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.wallet-balance {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #3498db;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
 }
 
 /* Buttons */
-
-.btn-primary {
+.payment-button {
+    display: block;
+    text-align: center;
     background: linear-gradient(to right, #0a6bea, #66b2ff);
     border: none;
     border-radius: 25px;
+    padding: 12px;
     font-weight: 600;
     color: white;
-    transition: 0.3s;
+    text-decoration: none;
+    transition: all 0.3s;
     width: 100%;
+    margin-bottom: 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    box-sizing: border-box;
 }
 
-.btn-primary:hover {
+.payment-button:hover {
     background: #004aad;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.btn-outline-secondary {
+.secondary-button {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    background: white;
+    border: 2px solid #0a6bea;
     border-radius: 25px;
+    padding: 12px;
     font-weight: 600;
+    color: #0a6bea;
+    transition: all 0.3s;
     width: 100%;
+    cursor: pointer;
+    font-size: 1rem;
+    box-sizing: border-box;
 }
 
+.secondary-button:hover {
+    background: #f1f8ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #0a6bea;
+}
+
+/* Responsive Design */
 @media (max-width: 480px) {
+    header {
+        padding: 12px 15px;
+    }
+    
     .logo img {
         height: 45px;
     }
-
-    .payment-card {
-        padding: 15px;
+    
+    .nav-links li {
+        margin-left: 15px;
     }
-
-    .btn-primary, .btn-outline-secondary {
-        font-size: 14px;
+    
+    .container {
+        padding: 20px 15px;
+    }
+    
+    .payment-card {
+        padding: 20px;
+    }
+    
+    .payment-button, 
+    .secondary-button {
         padding: 10px;
+        font-size: 0.9rem;
+    }
+    
+    .total-amount,
+    .wallet-balance {
+        font-size: 1.2rem;
     }
 }

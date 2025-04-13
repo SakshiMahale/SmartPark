@@ -4,52 +4,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wallet Payment | Smart Parking System</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/paymentbywallet.css">
+    <style>
+        /* Additional styles for better layout */
+        .booking-summary p {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+        .booking-summary p strong {
+            min-width: 100px;
+        }
+    </style>
 </head>
 <body>
-
     <header>
         <div class="logo">
             <img src="../Images/Logo.png" alt="SmartPark Logo">
         </div>
         <nav>
             <ul class="nav-links">
-                <li><a href="../html_pages/home.html">Home</a></li>
-                <li><a href="../css/profile.css">Profile</a></li>
-                <li><a href="#">Book Slot</a></li>
-                <li><a href="../html_pages/about_us.html">About Us</a></li>
-                <li><a href="../html_pages/help.html">Help</a></li>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="book_slot.html">Book Slot</a></li>
+                <li><a href="about_us.html">About Us</a></li>
+                <li><a href="help.html">Help</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="container">
-        <div class="payment-card card shadow-lg p-4">
-
-            <h3 class="text-center mb-4">Wallet Payment</h3>
-
-            <div class="mb-3">
-                <label class="form-label">Enter Amount</label>
-                <input type="number" class="form-control" placeholder="Enter amount to pay">
+    <div class="container">
+        <div class="payment-card">
+            <h2>Wallet Payment</h2>
+            
+            <div class="booking-summary">
+                <h3>Booking Summary</h3>
+                <p><strong>Location:</strong> <span id="payment-location">-</span></p>
+                <p><strong>Slot:</strong> <span id="payment-slot">-</span></p>
+                <p><strong>Date:</strong> <span id="payment-date">-</span></p>
+                <p><strong>Time:</strong> <span id="payment-time">-</span></p>
+                <p><strong>Duration:</strong> <span id="payment-duration">-</span></p>
+                <p><strong>Rate:</strong> <span id="payment-rate">-</span></p>
             </div>
-
-            <div class="mb-3">
-                <label class="form-label">Total Price</label>
-                <input type="text" class="form-control" value="₹90" disabled>
+            
+            <div class="payment-details">
+                <div class="form-group">
+                    <label>Total Amount:</label>
+                    <div id="total-price" class="total-amount">₹0</div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Wallet Balance:</label>
+                    <div id="wallet-balance" class="wallet-balance">₹1000</div>
+                </div>
+                
+                <a href="../html_pages/confirmation.html" id="confirm-payment" class="payment-button">Confirm Payment</a>
+                <a href="../html_pages/top_up.html" id="top-up" class="secondary-button">Top Up Wallet</a>
             </div>
-
-            <div class="mb-4">
-                <label class="form-label">Hours Selected</label>
-                <input type="text" class="form-control" value="3 hrs (₹30/hr)" disabled>
-            </div>
-
-            <button class="btn btn-primary mb-2">Pay</button>
-            <button class="btn btn-outline-secondary">Top Up Wallet</button>
         </div>
-    </main>
+    </div>
 
-    
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get parameters from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // Safely get and display all parameters
+            const getParam = (param) => urlParams.get(param) || '-';
+            
+            const location = decodeURIComponent(getParam('location'));
+            const slot = decodeURIComponent(getParam('slot'));
+            const date = getParam('date');
+            const time = getParam('time');
+            const duration = getParam('duration');
+            const pricePerHour = getParam('pricePerHour');
+            const total = getParam('total') || getParam('amount'); // Handle both parameter names
+            
+            document.getElementById('payment-location').textContent = location;
+            document.getElementById('payment-slot').textContent = slot;
+            document.getElementById('payment-date').textContent = date;
+            document.getElementById('payment-time').textContent = time;
+            document.getElementById('payment-duration').textContent = duration + ' hours';
+            document.getElementById('payment-rate').textContent = pricePerHour === '-' ? '-' : `₹${pricePerHour}/hour`;
+            document.getElementById('total-price').textContent = total === '-' ? '₹0' : `₹${total}`;
+            
+            // Setup confirmation button
+            const confirmBtn = document.getElementById('confirm-payment');
+            if (total !== '-' && total > 0) {
+                confirmBtn.href = `../html_pages/confirmation.html?location=${encodeURIComponent(location)}` +
+                                 `&slot=${encodeURIComponent(slot)}` +
+                                 `&date=${date}` +
+                                 `&time=${time}` +
+                                 `&duration=${duration}` +
+                                 `&pricePerHour=${pricePerHour}` +
+                                 `&total=${total}`;
+                
+                confirmBtn.addEventListener('click', function(e) {
+                    if (!confirm(`Confirm payment of ₹${total}?`)) {
+                        e.preventDefault();
+                    }
+                });
+            } else {
+                confirmBtn.style.opacity = '0.5';
+                confirmBtn.style.cursor = 'not-allowed';
+                confirmBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('Invalid booking details. Please start over.');
+                });
+            }
+        });
+    </script>
 </body>
 </html>

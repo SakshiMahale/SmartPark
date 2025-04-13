@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation | Smart Parking</title>
+    <link rel="stylesheet" href="../css/book_slot.css">
+    <style>
+        /* Additional styles for confirmation page */
+        .confirmation-card {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .confirmation-details {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+        .confirmation-details p {
+            margin: 0.8rem 0;
+            font-size: 1.1rem;
+        }
+        .confirmation-message {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #e8f8f5;
+            border-radius: 8px;
+            color: #27ae60;
+        }
+        .btn-new-booking {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .btn-new-booking:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../Images/Logo.png" alt="SmartPark Logo">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="book_slot.html">Book Slot</a></li>
+                <li><a href="about_us.html">About Us</a></li>
+                <li><a href="help.html">Help</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="confirmation-card">
+            <h1>Booking Confirmed! 🎉</h1>
+            <div class="confirmation-details">
+                <p><strong>Location:</strong> <span id="conf-location"></span></p>
+              
+                <p><strong>Parking Slot:</strong> <span id="conf-slot"></span></p>
+                <p><strong>Date:</strong> <span id="conf-date"></span></p>
+                <p><strong>Time:</strong> <span id="conf-time"></span></p>
+                <p><strong>Duration:</strong> <span id="conf-duration"></span> hours</p>
+                <p><strong>Rate:</strong> ₹<span id="conf-rate"></span>/hour</p>
+                <p><strong>Total Amount:</strong> ₹<span id="conf-amount"></span></p>
+            </div>
+            <div class="confirmation-message">
+                <p>Your parking slot has been successfully booked. A confirmation has been sent to your email.</p>
+                <p>Booking Reference: <strong>SP-<span id="booking-ref"></span></strong></p>
+            </div>
+            <a href="book_slot.html" class="btn-new-booking">Book Another Slot</a>
+        </div>
+    </div>
+
+    <script>
+        // Get booking details from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // Display confirmation details with fallback values
+        const getParam = (param) => urlParams.get(param) || 'Not specified';
+        
+        document.getElementById('conf-location').textContent = decodeURIComponent(getParam('location'));
+        
+        document.getElementById('conf-slot').textContent = decodeURIComponent(getParam('slot'));
+        document.getElementById('conf-date').textContent = formatDate(getParam('date'));
+        document.getElementById('conf-time').textContent = formatTime(getParam('time'));
+        document.getElementById('conf-duration').textContent = getParam('duration');
+        document.getElementById('conf-rate').textContent = getParam('pricePerHour');
+        
+        // Fix for total amount - using both 'amount' and 'total' parameters for backward compatibility
+        const totalAmount = getParam('total') || getParam('amount');
+        document.getElementById('conf-amount').textContent = totalAmount;
+        
+        // Generate booking reference
+        document.getElementById('booking-ref').textContent = generateBookingRef();
+
+        // Helper functions
+        function formatDate(dateStr) {
+            if (!dateStr || dateStr === 'Not specified') return dateStr;
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateStr).toLocaleDateString('en-IN', options);
+        }
+
+        function formatTime(timeStr) {
+            if (!timeStr || timeStr === 'Not specified') return timeStr;
+            return timeStr.substring(0, 5); // Just show HH:MM
+        }
+
+        function generateBookingRef() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+            let result = '';
+            for (let i = 0; i < 6; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+    </script>
+</body>
+</html>
