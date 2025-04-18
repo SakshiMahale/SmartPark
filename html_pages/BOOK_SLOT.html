@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartPark - Booking Confirmation</title>
+    <style>
+        :root {
+            --primary-blue: #0088ff;
+            --dark-blue: #005bb8;
+            --light-blue: #e6f3ff;
+            --black: #333333;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --medium-gray: #dddddd;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--black);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .back-button {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .page-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .add-booking {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .tabs {
+            display: flex;
+            margin: 20px 0;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            color: var(--black);
+        }
+
+        .tab.active {
+            color: var(--primary-blue);
+            font-weight: bold;
+            border-bottom: 2px solid var(--primary-blue);
+        }
+
+        .booking-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .location-banner {
+            position: relative;
+            height: 120px;
+            background-color: var(--dark-blue);
+            color: var(--white);
+            display: flex;
+            align-items: flex-end;
+            padding: 15px;
+        }
+
+        .location-name {
+            font-size: 22px;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        .date-range {
+            color: var(--white);
+            font-size: 14px;
+            margin-top: 5px;
+            z-index: 1;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+        }
+
+        .booking-details {
+            padding: 15px;
+        }
+
+        .location-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+            color: var(--dark-blue);
+        }
+
+        .booking-item {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid var(--medium-gray);
+        }
+
+        .booking-info {
+            flex: 1;
+        }
+
+        .status {
+            background-color: #4CAF50;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        .booking-number {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 5px;
+        }
+
+        .vehicle-details {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .time-details {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .time {
+            font-weight: bold;
+        }
+
+        .date {
+            font-size: 12px;
+            color: #777;
+        }
+
+        .arrow {
+            margin: 0 15px;
+            color: var(--primary-blue);
+        }
+
+        .user-name {
+            font-size: 14px;
+            text-align: right;
+            color: #777;
+        }
+
+        .action-buttons {
+            display: flex;
+            padding: 10px 15px;
+            gap: 10px;
+            border-top: 1px solid var(--medium-gray);
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .btn-outline {
+            background-color: var(--white);
+            color: var(--primary-blue);
+            border: 1px solid var(--primary-blue);
+        }
+
+        .btn-filled {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .scan-buttons {
+            display: flex;
+            padding: 10px 15px;
+            gap: 10px;
+            border-top: 1px solid var(--medium-gray);
+        }
+
+        .scan-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scan-btn-entry {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .scan-btn-exit {
+            background-color: var(--dark-blue);
+            color: var(--white);
+        }
+
+        .scan-icon {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="book_slot">
+        <header>
+            <a href="#" class="back-button">
+                &larr; Back
+            </a>
+            <div class="page-title">My Trips</div>
+            <a href="#" class="add-booking">+ Add Booking</a>
+        </header>
+
+        <div class="tabs">
+            <div class="tab active">Completed</div>
+            <div class="tab">Cancelled</div>
+        </div>
+
+        <div class="booking-card">
+            <div class="location-banner">
+                <div class="overlay"></div>
+                <div>
+                    <div class="location-name">Mumbai & Pune</div>
+                    <div class="date-range">15 Mar - 17 Mar</div>
+                </div>
+            </div>
+
+            <div class="booking-item">
+                <div class="location-icon">M</div>
+                <div class="booking-info">
+                    <div class="status">Completed</div>
+                    <div class="booking-number">C23119 | CSMT NCP SP SPL</div>
+                    <div class="vehicle-details">C.SIVAPRASAD T (CSMT)</div>
+
+                    <div class="time-details">
+                        <div class="departure">
+                            <div class="time">06:20</div>
+                            <div class="date">Tue, 13 Mar 25</div>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="arrival">
+                            <div class="time">Akola Jn (AK)</div>
+                            <div class="date">10:27</div>
+                        </div>
+                    </div>
+
+                    <div class="user-name">Aditya</div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-outline">Download Invoice</button>
+                <button class="btn btn-filled">View Details</button>
+            </div>
+
+            <div class="scan-buttons">
+                <button class="scan-btn scan-btn-entry">
+                    <span class="scan-icon">🔍</span> ENTRY SCAN
+                </button>
+                <button class="scan-btn scan-btn-exit">
+                    <span class="scan-icon">🚪</span> EXIT SCAN
+                </button>
+            </div>
+        </div>
+
+        <div class="booking-card">
+            <div class="booking-item">
+                <div class="location-icon">B</div>
+                <div class="booking-info">
+                    <div class="status">Completed</div>
+                    <div class="booking-number">E32219 | GITANJALI EXP</div>
+                    <div class="vehicle-details">C.SHIVAJI K (CSMT)</div>
+
+                    <div class="time-details">
+                        <div class="departure">
+                            <div class="time">11:30</div>
+                            <div class="date">Wed, 15 Mar 25</div>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="arrival">
+                            <div class="time">Akola Jn (AK)</div>
+                            <div class="date">14:20</div>
+                        </div>
+                    </div>
+
+                    <div class="user-name">Aditya</div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-outline">Download Invoice</button>
+                <button class="btn btn-filled">View Details</button>
+            </div>
+
+            <div class="scan-buttons">
+                <button class="scan-btn scan-btn-entry">
+                    <span class="scan-icon">🔍</span> ENTRY SCAN
+                </button>
+                <button class="scan-btn scan-btn-exit">
+                    <span class="scan-icon">🚪</span> EXIT SCAN
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
