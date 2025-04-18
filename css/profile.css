@@ -112,13 +112,31 @@ h3 {
     cursor: pointer;
     display: block;
     margin: auto;
-    background: linear-gradient(to right, #fff, rgb(10, 107, 234));
     border: none;
     outline: none;
-    color: #000;
-    border-radius: 30px;
+    color: #fff;
+    border-radius: 10px;
+    width: 50%;
 }
 
+.table {
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table thead th {
+    color: white;
+    font-weight: 600;
+    text-align: center;
+}
+
+.table tbody td {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 15px;
+    color: #333;
+}
 
 /* Footer */
 footer {
