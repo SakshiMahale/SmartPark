@@ -19,11 +19,11 @@
         </div>
         <nav>
             <ul class="nav-links">
-                <li><a href="../Html_pages/home.html">Home</a></li>
-                <li><a href="../html_pages/profile.html">Profile</a></li>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
                 <li><a href="book_slot.html">Book Slot</a></li>
-                <li><a href="../html_pages/about_us.html">About Us</a></li>
-                <li><a href="../html_pages/help.html">Help</a></li>
+                <li><a href="about_us.html">About Us</a></li>
+                <li><a href="help.html">Help</a></li>
             </ul>
         </nav>
     </header>
@@ -79,6 +79,44 @@
                     <br>
                     <button id="saveBtn" type="button" class="btn btn-primary">Save</button>
                 </form>
+            </div>
+
+            <hr>
+
+            <div class="container mt-5">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="mb-0">Your Parking History</h3>
+                    <button class="btn btn-secondary">Clear History</button>
+                </div>
+        
+                <table class="table table-bordered table-striped shadow">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Username</th>
+                            <th>Vehicle Type</th>
+                            <th>Entry Time</th>
+                            <th>Exit Time</th>
+                            <th>Date</th>
+                            <th>Parking Location</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@abc123</td>
+                            <td>Car</td>
+                            <td>08:45 AM</td>
+                            <td>11:30 AM</td>
+                            <td>2025-04-17</td>
+                            <td>Address</td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center mt-3">
+                <button class="btn btn-danger mt-5">Delete Account</button>
+                <button class="btn btn-secondary mt-5">Logout</button>
             </div>
         </section>
     </main>
